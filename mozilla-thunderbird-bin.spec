@@ -7,7 +7,7 @@ Name:		mozilla-thunderbird-bin
 Version:	0.8
 Release:	0.9
 License:	MPL/LGPL
-Group:		Applications/Networking
+Group:		X11/Applications/Networking
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/thunderbird-%{version}-i686-linux-gtk2+xft.tar.gz
 # Source0-md5:	16ca6cf7b4763aa684eea26cc8b93621
 # Source0-size:	10369024
@@ -31,12 +31,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define	_noautoprovfiles	libnspr4.so libplc4.so libplds4.so
 
 %description
-Mozilla Thunderbird is an open-source,fast and portable email client.
-Binary version.
+Mozilla Thunderbird is an open-source, fast and portable email client.
+Binary version from %{url}.
 
 %description -l pl
 Mozilla Thunderbird jest open sourcowym, szybkim i przeno¶nym klientem
-poczty. Wersja skompilowana.
+poczty. 
+Wersja binarna, ze strony %{url}.
 
 %prep
 %setup -q -n thunderbird
