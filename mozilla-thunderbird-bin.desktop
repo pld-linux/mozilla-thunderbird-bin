@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Mozilla Thunderbird (bin)
+Name[pl]=Mozilla Thunderbird (bin)
+Comment=Email client
+Comment[pl]=Klient poczty
+Exec=mozilla-thunderbird-bin
+Icon=mozilla-thunderbird-bin.xpm
+Terminal=false
+Type=Application
+Categories=Network;Email;
+Encoding=UTF-8
+# vi: encoding=utf-8
