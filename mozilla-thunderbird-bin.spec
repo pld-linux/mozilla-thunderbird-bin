@@ -10,7 +10,6 @@ License:	MPL/LGPL
 Group:		X11/Applications/Networking
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/thunderbird-%{version}-i686-linux-gtk2+xft.tar.gz
 # Source0-md5:	16ca6cf7b4763aa684eea26cc8b93621
-# Source0-size:	10369024
 Source1:	%{name}.desktop
 Source2:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
