@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_thunderbirddir}/chrome/offline.jar
 %{_thunderbirddir}/chrome/*.txt
 %{_pixmapsdir}/*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %dir %{_thunderbirddir}/init.d
 %{_thunderbirddir}/init.d/*
 %dir %{_thunderbirddir}/extensions
