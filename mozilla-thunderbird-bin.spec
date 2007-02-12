@@ -2,7 +2,7 @@
 # TODO: directories 
 #
 Summary:	Mozilla Thunderbird - email client
-Summary(pl):	Mozilla Thunderbird - klient poczty
+Summary(pl.UTF-8):   Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
 Version:	0.8
 Release:	0.9
@@ -33,8 +33,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Mozilla Thunderbird is an open-source, fast and portable email client.
 Binary version from %{url}.
 
-%description -l pl
-Mozilla Thunderbird jest open sourcowym, szybkim i przeno∂nym klientem
+%description -l pl.UTF-8
+Mozilla Thunderbird jest open sourcowym, szybkim i przeno≈õnym klientem
 poczty. 
 Wersja binarna, ze strony %{url}.
 
