@@ -2,7 +2,7 @@
 # TODO: directories 
 #
 Summary:	Mozilla Thunderbird - email client
-Summary(pl.UTF-8):   Mozilla Thunderbird - klient poczty
+Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
 Version:	0.8
 Release:	0.9
