@@ -107,7 +107,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/*-bin
 %attr(755,root,root) %{_libdir}/%{name}/mozilla-xremote-client
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
-%{_libdir}/%{name}/Throbber-small.gif
 
 %{_libdir}/%{name}/platform.ini
 %{_libdir}/%{name}/application.ini
@@ -115,7 +114,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/crashreporter
 %{_libdir}/%{name}/crashreporter.ini
 
+# updater
 %attr(755,root,root) %{_libdir}/%{name}/updater
+%{_libdir}/%{name}/Throbber-small.gif
 %{_libdir}/%{name}/updater.ini
 %{_libdir}/%{name}/update.locale
 
