@@ -2,7 +2,7 @@ Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
 Version:	3.1.2
-Release:	0.4
+Release:	0.7
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2
@@ -10,6 +10,7 @@ Source0:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{vers
 Source1:	%{name}.desktop
 Source2:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
+Requires:	mktemp
 Requires:	myspell-common
 Requires:	sqlite3 >= 3.6.22-2
 ExclusiveArch:	i686 athlon
@@ -20,7 +21,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		nss_caps		libfreebl3.so libnss3.so libnssckbi.so libsmime3.so ibsoftokn3.so libssl3.so libnssutil3.so
 %define		nspr_caps		libnspr4.so libplc4.so libplds4.so
-%define		moz_caps		libgtkembedmoz.so libmozjs.so libxpcom.so libxul.so
+%define		moz_caps		libgtkembedmoz.so libmozjs.so libxpcom.so libxul.so libxpcom_core.so
 %define		sqlite_caps		libsqlite3.so
 
 %define		_noautoreqdep		libgfxpsshar.so libgkgfx.so libgtkxtbin.so libjsj.so libxpcom_compat.so libxpcom_core.so libxpistub.so
@@ -50,6 +51,10 @@ install -p %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/%{name}
 cp -a thunderbird/* $RPM_BUILD_ROOT%{_libdir}/%{name}
 cp -a thunderbird/chrome/icons/default/default48.png $RPM_BUILD_ROOT%{_pixmapsdir}/%{name}.png
 cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
+
+# files created by register
+touch $RPM_BUILD_ROOT%{_libdir}/%{name}/components/compreg.dat
+touch $RPM_BUILD_ROOT%{_libdir}/%{name}/components/xpti.dat
 
 # use system dict
 rm -rf $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
@@ -90,6 +95,19 @@ rm $RPM_BUILD_ROOT%{_libdir}/%{name}/removed-files
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+# it attempts to register crashreport in $HOME/.thunderbird
+# make temporary $HOME to avoid polluting home of user installing this package
+# via sudo.
+export HOME=$(mktemp -d)
+# also TMPDIR could be pointing to sudo user's homedir
+unset TMPDIR TMP || :
+
+umask 022
+%{_libdir}/%{name}/thunderbird -register
+
+rm -rf $HOME
 
 %files
 %defattr(644,root,root,755)
@@ -135,6 +153,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_pixmapsdir}/*.png
 %{_desktopdir}/*.desktop
+
+# files created by register
+%ghost %{_libdir}/%{name}/components/compreg.dat
+%ghost %{_libdir}/%{name}/components/xpti.dat
 
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/chrome
