@@ -1,13 +1,12 @@
-# TODO: Check if just updating file is all what is needed during upgrade 3.1.2 -> 3.1.6
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	3.1.6
-Release:	0.1
+Version:	3.1.7
+Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2
-# Source0-md5:	bda81c1f8cc5ec17d76e5229874a4993
+# Source0-md5:	d8611c9fcf956240144b95c920fd42de
 Source1:	%{name}.desktop
 Source2:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -129,6 +128,7 @@ rm -rf $HOME
 
 %{_libdir}/%{name}/platform.ini
 %{_libdir}/%{name}/application.ini
+%{_libdir}/%{name}/blocklist.xml
 
 %attr(755,root,root) %{_libdir}/%{name}/crashreporter
 %{_libdir}/%{name}/crashreporter.ini
