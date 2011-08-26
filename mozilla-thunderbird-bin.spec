@@ -5,7 +5,7 @@ Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
 Version:	6.0
-Release:	0.7
+Release:	0.8
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2#/%{realname}-%{version}.tar.bz2
@@ -94,6 +94,13 @@ ln -s ../../share/%{name}/isp $RPM_BUILD_ROOT%{_libdir}/%{name}/isp
 # mozldap
 %{__rm} -f $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{ldap,ldif,prldap,ssldap}60.so
 
+# remove update notifier, we prefer rpm packages for updating
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/updater
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/updater.ini
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/update.locale
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/Throbber-small.gif
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/precomplete
+
 # remove unecessary stuff
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/README.txt
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/removed-files
@@ -129,7 +136,6 @@ rm -rf $HOME
 %attr(755,root,root) %{_libdir}/%{name}/*-bin
 %attr(755,root,root) %{_libdir}/%{name}/mozilla-xremote-client
 %attr(755,root,root) %{_libdir}/%{name}/plugin-container
-%attr(755,root,root) %{_libdir}/%{name}/precomplete
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
 
 %{_libdir}/%{name}/application.ini
@@ -140,12 +146,6 @@ rm -rf $HOME
 
 %attr(755,root,root) %{_libdir}/%{name}/crashreporter
 %{_libdir}/%{name}/crashreporter.ini
-
-# updater
-%attr(755,root,root) %{_libdir}/%{name}/updater
-%{_libdir}/%{name}/Throbber-small.gif
-%{_libdir}/%{name}/updater.ini
-%{_libdir}/%{name}/update.locale
 
 %dir %{_libdir}/%{name}/extensions
 %{_libdir}/%{name}/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}
