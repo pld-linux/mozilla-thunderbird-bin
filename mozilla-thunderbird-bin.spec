@@ -5,7 +5,7 @@ Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
 Version:	7.0.1
-Release:	0.1
+Release:	0.2
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2#/%{realname}-%{version}.tar.bz2
@@ -73,8 +73,10 @@ touch $RPM_BUILD_ROOT%{_libdir}/%{name}/components/compreg.dat
 touch $RPM_BUILD_ROOT%{_libdir}/%{name}/components/xpti.dat
 
 # use system dict
-%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
+%{__rm} -rv $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
 ln -s %{_datadir}/myspell $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
+%{__rm} -rv $RPM_BUILD_ROOT%{_libdir}/%{name}/hyphenation
+ln -s %{_datadir}/myspell $RPM_BUILD_ROOT%{_libdir}/%{name}/hyphenation
 
 # move arch independant ones to datadir
 mv $RPM_BUILD_ROOT%{_libdir}/%{name}/chrome $RPM_BUILD_ROOT%{_datadir}/%{name}/chrome
@@ -156,6 +158,7 @@ rm -rf $HOME
 %{_libdir}/%{name}/dictionaries
 %{_libdir}/%{name}/icons
 %{_libdir}/%{name}/isp
+%{_libdir}/%{name}/hyphenation
 
 %{_pixmapsdir}/*.png
 %{_desktopdir}/*.desktop
