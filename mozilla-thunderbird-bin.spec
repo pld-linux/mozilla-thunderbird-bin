@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	7.0.1
-Release:	0.2
+Version:	8.0
+Release:	0.1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2#/%{realname}-%{version}.tar.bz2
-# Source0-md5:	30d0b3daaecd75f28a1d9ab0baa9c09c
+# Source0-md5:	38ed485e42271445ecb03ffc1d829681
 Source1:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2#/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	28c14dada15d4e2ffa1878c1576e9c68
+# Source1-md5:	af45966e19aaacfc0bc2bdd24a093151
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -104,7 +104,6 @@ ln -s ../../share/%{name}/isp $RPM_BUILD_ROOT%{_libdir}/%{name}/isp
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/precomplete
 
 # remove unecessary stuff
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/README.txt
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/removed-files
 
 %clean
