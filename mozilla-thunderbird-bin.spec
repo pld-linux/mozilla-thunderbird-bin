@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	8.0
-Release:	0.1
+Version:	10.0.2
+Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2#/%{realname}-%{version}.tar.bz2
-# Source0-md5:	38ed485e42271445ecb03ffc1d829681
+# Source0-md5:	cb258f85ffece53b8af59f6c215b3d2d
 Source1:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2#/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	af45966e19aaacfc0bc2bdd24a093151
+# Source1-md5:	c23f72dac7dc9ec0e34485e1f9f1760e
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -75,7 +75,7 @@ touch $RPM_BUILD_ROOT%{_libdir}/%{name}/components/xpti.dat
 # use system dict
 %{__rm} -rv $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
 ln -s %{_datadir}/myspell $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
-%{__rm} -rv $RPM_BUILD_ROOT%{_libdir}/%{name}/hyphenation
+#%{__rm} -rv $RPM_BUILD_ROOT%{_libdir}/%{name}/hyphenation
 ln -s %{_datadir}/myspell $RPM_BUILD_ROOT%{_libdir}/%{name}/hyphenation
 
 # move arch independant ones to datadir
@@ -83,10 +83,12 @@ mv $RPM_BUILD_ROOT%{_libdir}/%{name}/chrome $RPM_BUILD_ROOT%{_datadir}/%{name}/c
 mv $RPM_BUILD_ROOT%{_libdir}/%{name}/defaults $RPM_BUILD_ROOT%{_datadir}/%{name}/defaults
 mv $RPM_BUILD_ROOT%{_libdir}/%{name}/icons $RPM_BUILD_ROOT%{_datadir}/%{name}/icons
 mv $RPM_BUILD_ROOT%{_libdir}/%{name}/isp $RPM_BUILD_ROOT%{_datadir}/%{name}/isp
+mv $RPM_BUILD_ROOT%{_libdir}/%{name}/searchplugins $RPM_BUILD_ROOT%{_datadir}/%{name}/searchplugins
 ln -s ../../share/%{name}/chrome $RPM_BUILD_ROOT%{_libdir}/%{name}/chrome
 ln -s ../../share/%{name}/defaults $RPM_BUILD_ROOT%{_libdir}/%{name}/defaults
 ln -s ../../share/%{name}/icons $RPM_BUILD_ROOT%{_libdir}/%{name}/icons
 ln -s ../../share/%{name}/isp $RPM_BUILD_ROOT%{_libdir}/%{name}/isp
+ln -s ../../share/%{name}/searchplugins $RPM_BUILD_ROOT%{_libdir}/%{name}/searchplugins
 
 # never package these
 # nss
@@ -142,7 +144,7 @@ rm -rf $HOME
 %{_libdir}/%{name}/application.ini
 %{_libdir}/%{name}/blocklist.xml
 %{_libdir}/%{name}/chrome.manifest
-%{_libdir}/%{name}/omni.jar
+%{_libdir}/%{name}/omni.ja
 %{_libdir}/%{name}/platform.ini
 
 %attr(755,root,root) %{_libdir}/%{name}/crashreporter
@@ -155,9 +157,10 @@ rm -rf $HOME
 %{_libdir}/%{name}/chrome
 %{_libdir}/%{name}/defaults
 %{_libdir}/%{name}/dictionaries
+%{_libdir}/%{name}/hyphenation
 %{_libdir}/%{name}/icons
 %{_libdir}/%{name}/isp
-%{_libdir}/%{name}/hyphenation
+%{_libdir}/%{name}/searchplugins
 
 %{_pixmapsdir}/*.png
 %{_desktopdir}/*.desktop
@@ -171,3 +174,4 @@ rm -rf $HOME
 %{_datadir}/%{name}/defaults
 %{_datadir}/%{name}/icons
 %{_datadir}/%{name}/isp
+%{_datadir}/%{name}/searchplugins
