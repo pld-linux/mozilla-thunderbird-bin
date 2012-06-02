@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	10.0.2
+Version:	12.0.1
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2#/%{realname}-%{version}.tar.bz2
-# Source0-md5:	cb258f85ffece53b8af59f6c215b3d2d
+# Source0-md5:	3557fee9f1b901232d3939318aa293db
 Source1:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2#/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	c23f72dac7dc9ec0e34485e1f9f1760e
+# Source1-md5:	166e752b97344613e1f13314e490f7fc
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -101,12 +101,13 @@ ln -s ../../share/%{name}/searchplugins $RPM_BUILD_ROOT%{_libdir}/%{name}/search
 # remove update notifier, we prefer rpm packages for updating
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/updater
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/updater.ini
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/update.locale
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/Throbber-small.gif
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/precomplete
 
 # remove unecessary stuff
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/removed-files
+# testpilot quiz
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/distribution/extensions/tbtestpilot@labs.mozilla.com.xpi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
