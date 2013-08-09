@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	12.0.1
+Version:	17.0.8
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
-Source0:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2#/%{realname}-%{version}.tar.bz2
-# Source0-md5:	3557fee9f1b901232d3939318aa293db
-Source1:	http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2#/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	166e752b97344613e1f13314e490f7fc
+Source0:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
+# Source0-md5:	8fc86eb1ae2f42e2ab754aebe181e1f6
+Source1:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
+# Source1-md5:	ab51a6e97f4642e6eb4d7ce9bc97b796
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -145,6 +145,7 @@ rm -rf $HOME
 %{_libdir}/%{name}/application.ini
 %{_libdir}/%{name}/blocklist.xml
 %{_libdir}/%{name}/chrome.manifest
+%{_libdir}/%{name}/dependentlibs.list
 %{_libdir}/%{name}/omni.ja
 %{_libdir}/%{name}/platform.ini
 
