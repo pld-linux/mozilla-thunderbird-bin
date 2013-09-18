@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	17.0.8
+Version:	24.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	8fc86eb1ae2f42e2ab754aebe181e1f6
+# Source0-md5:	2e08c0a22ac577c15046759a67bc272e
 Source1:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	ab51a6e97f4642e6eb4d7ce9bc97b796
+# Source1-md5:	d89549181b55428e2f352d40d42d704a
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -97,6 +97,8 @@ ln -s ../../share/%{name}/searchplugins $RPM_BUILD_ROOT%{_libdir}/%{name}/search
 %{__rm} -f $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{nspr4,plc4,plds4}.so
 # mozldap
 %{__rm} -f $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{ldap,ldif,prldap,ssldap}60.so
+grep -v 'lib\(nspr4\|plc4\|plds4\|nssutil3\|nss3\|smime3\|ssl3\|ldap60\|ldif60\|prldap60\|ssldap60\).so' \
+	dependentlibs.list > $RPM_BUILD_ROOT%{_libdir}/%{name}/dependentlibs.list
 
 # remove update notifier, we prefer rpm packages for updating
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/updater
@@ -106,8 +108,6 @@ ln -s ../../share/%{name}/searchplugins $RPM_BUILD_ROOT%{_libdir}/%{name}/search
 
 # remove unecessary stuff
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/removed-files
-# testpilot quiz
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/distribution/extensions/tbtestpilot@labs.mozilla.com.xpi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -133,7 +133,7 @@ rm -rf $HOME
 
 %dir %{_libdir}/%{name}/components
 %attr(755,root,root) %{_libdir}/%{name}/components/*.so
-%attr(755,root,root) %{_libdir}/%{name}/components/binary.manifest
+%attr(755,root,root) %{_libdir}/%{name}/components/components.manifest
 
 %attr(755,root,root) %{_libdir}/%{name}/*.so
 %attr(755,root,root) %{_libdir}/%{name}/*.sh
