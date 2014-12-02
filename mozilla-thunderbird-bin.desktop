@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Mozilla Thunderbird (bin)
-Name[pl]=Mozilla Thunderbird (bin)
+Name=Mozilla Thunderbird
+Name[pl]=Mozilla Thunderbird
 Comment=Email client based on Mozilla technology
 Comment[ca]=Llegiu i escriviu correu
 Comment[de]=Emails lesen und verfassen
@@ -10,6 +10,7 @@ Exec=mozilla-thunderbird-bin
 Icon=mozilla-thunderbird-bin.xpm
 Terminal=false
 Type=Application
+MimeType=x-scheme-handler/mailto;x-scheme-handler/webcal;
 Categories=GTK;Network;Email;
 Encoding=UTF-8
 # vi: encoding=utf-8

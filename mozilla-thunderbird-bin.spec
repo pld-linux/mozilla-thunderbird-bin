@@ -4,18 +4,19 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	31.2.0
+Version:	31.3.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	fa1b546dad551180688a6c4f95c16ef9
+# Source0-md5:	a2f6d1046fb20c6dbe5391dad726fdaa
 Source1:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	ad1508f0111790e06e9da73115f5a222
+# Source1-md5:	bbd90a37e208f1cea1a408fcd0fefbe2
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
 BuildRequires:	tar >= 1:1.15.1
+Requires(post,postun):	desktop-file-utils
 Requires:	mktemp
 Requires:	myspell-common
 Requires:	sqlite3 >= 3.6.22-2
@@ -101,6 +102,7 @@ grep -v 'lib\(nspr4\|plc4\|plds4\|nssutil3\|nss3\|smime3\|ssl3\|ldap60\|ldif60\|
 	dependentlibs.list > $RPM_BUILD_ROOT%{_libdir}/%{name}/dependentlibs.list
 
 # remove update notifier, we prefer rpm packages for updating
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/update-settings.ini
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/updater
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/updater.ini
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/Throbber-small.gif
@@ -113,6 +115,7 @@ grep -v 'lib\(nspr4\|plc4\|plds4\|nssutil3\|nss3\|smime3\|ssl3\|ldap60\|ldif60\|
 rm -rf $RPM_BUILD_ROOT
 
 %post
+%update_desktop_database_post
 # it attempts to register crashreport in $HOME/.thunderbird
 # make temporary $HOME to avoid polluting home of user installing this package
 # via sudo.
@@ -124,6 +127,9 @@ umask 022
 %{_libdir}/%{name}/thunderbird -register
 
 rm -rf $HOME
+
+%postun
+%update_desktop_database_postun
 
 %files
 %defattr(644,root,root,755)
