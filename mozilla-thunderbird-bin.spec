@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	31.7.0
+Version:	38.1.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	1aea3ec5288fb1f2534b63c8f604c8a2
+# Source0-md5:	5e4cbf39f2b775c056d8ce0239287c74
 Source1:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	8583be98ce9b278da1887df68d85689b
+# Source1-md5:	325603a1bd10c728a36f032c9c8661e8
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -19,8 +19,9 @@ BuildRequires:	tar >= 1:1.15.1
 Requires(post,postun):	desktop-file-utils
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	sqlite3 >= 3.6.22-2
 Requires:	nss >= 1:3.13.0
+Requires:	sqlite3 >= 3.6.22-2
+Suggests:	%{name}-addon-lightning
 ExclusiveArch:	i686 athlon %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -50,6 +51,21 @@ Binary version from %{url}.
 %description -l pl.UTF-8
 Mozilla Thunderbird jest open sourcowym, szybkim i przenośnym klientem
 poczty. Wersja binarna, ze strony %{url}.
+
+%package addon-lightning
+Summary:	An integrated calendar for Icedove
+Summary(pl.UTF-8):	Zintegrowany kalendarz dla Icedove
+License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
+Group:		Applications/Networking
+Requires:	%{name} = %{version}-%{release}
+
+%description addon-lightning
+Lightning is an calendar extension to Mozilla Thunderbird email
+client.
+
+%description addon-lightning -l pl.UTF-8
+Lightning to rozszerzenie do klienta poczty Mozilla Thunderdbird
+dodające funkcjonalność kalendarza.
 
 %prep
 %setup -qcT
@@ -144,7 +160,6 @@ rm -rf $HOME
 %attr(755,root,root) %{_libdir}/%{name}/*.so
 %attr(755,root,root) %{_libdir}/%{name}/*.sh
 %attr(755,root,root) %{_libdir}/%{name}/*-bin
-%attr(755,root,root) %{_libdir}/%{name}/mozilla-xremote-client
 %attr(755,root,root) %{_libdir}/%{name}/plugin-container
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
 
@@ -160,6 +175,9 @@ rm -rf $HOME
 
 %dir %{_libdir}/%{name}/extensions
 %{_libdir}/%{name}/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}
+
+%dir %{_libdir}/%{name}/distribution
+%dir %{_libdir}/%{name}/distribution/extensions
 
 # symlinks
 %{_libdir}/%{name}/chrome
@@ -183,3 +201,7 @@ rm -rf $HOME
 %{_datadir}/%{name}/icons
 %{_datadir}/%{name}/isp
 %{_datadir}/%{name}/searchplugins
+
+%files addon-lightning
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}
