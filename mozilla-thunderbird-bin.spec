@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	45.2.0
+Version:	45.3.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	bc7fabd86d8e583bab0a77813c62cc9e
+# Source0-md5:	d6d967f0d7b018b63e2119f7b8a392ba
 Source1:	http://download.cdn.mozilla.net/pub/mozilla.org/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	5464948a150424d5b0fbd6ebc2390597
+# Source1-md5:	23360acbdb7df8c2b40ed7e628b9f372
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -19,8 +19,9 @@ BuildRequires:	tar >= 1:1.15.1
 Requires(post,postun):	desktop-file-utils
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	nss >= 1:3.13.0
-Requires:	sqlite3 >= 3.6.22-2
+Requires:	nspr >= 1:4.12
+Requires:	nss >= 1:3.21.1
+Requires:	sqlite3 >= 3.9.1
 Suggests:	%{name}-addon-lightning
 ExclusiveArch:	i686 athlon %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
