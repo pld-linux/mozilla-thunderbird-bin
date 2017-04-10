@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	45.8.0
+Version:	52.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	bbe32dc4ebb4c4d3e80511ea840d3dc7
+# Source0-md5:	535d73ae5cc5bcd976607fe78a218989
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	17c97308732bf45b8f070fcb730c6ec4
+# Source1-md5:	2ff59f784b7e6d9ff105fa99f54bb31f
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -19,9 +19,9 @@ BuildRequires:	tar >= 1:1.15.1
 Requires(post,postun):	desktop-file-utils
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	nspr >= 1:4.12
-Requires:	nss >= 1:3.21.3
-Requires:	sqlite3 >= 3.9.1
+Requires:	nspr >= 1:4.13.1
+Requires:	nss >= 1:3.28.3
+Requires:	sqlite3 >= 3.17.0
 Suggests:	%{name}-addon-lightning
 ExclusiveArch:	i686 athlon %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -103,7 +103,7 @@ ln -s ../../share/%{name}/isp $RPM_BUILD_ROOT%{_libdir}/%{name}/isp
 
 # never package these
 # nss
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{freebl3,nss3,nssckbi,nssdbm3,nssutil3,smime3,softokn3,ssl3}.*
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{freeblpriv3,nss3,nssckbi,nssdbm3,nssutil3,smime3,softokn3,ssl3}.*
 # nspr
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{nspr4,plc4,plds4}.so
 # mozldap
@@ -156,6 +156,8 @@ rm -rf $HOME
 %{_libdir}/%{name}/application.ini
 %{_libdir}/%{name}/blocklist.xml
 %{_libdir}/%{name}/dependentlibs.list
+%{_libdir}/%{name}/chrome.manifest
+%{_libdir}/%{name}/icudt58l.dat
 %{_libdir}/%{name}/omni.ja
 %{_libdir}/%{name}/platform.ini
 
@@ -175,6 +177,12 @@ rm -rf $HOME
 %{_libdir}/%{name}/hyphenation
 %{_libdir}/%{name}/icons
 %{_libdir}/%{name}/isp
+
+%dir %{_libdir}/%{name}/fonts
+%{_libdir}/%{name}/fonts/EmojiOneMozilla.ttf
+
+%dir %{_libdir}/%{name}/gtk2
+%attr(755,root,root) %{_libdir}/%{name}/gtk2/libmozgtk.so
 
 %{_pixmapsdir}/*.png
 %{_desktopdir}/*.desktop
