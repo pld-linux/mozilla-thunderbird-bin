@@ -17,6 +17,7 @@ Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
 BuildRequires:	tar >= 1:1.15.1
 Requires(post,postun):	desktop-file-utils
+Requires:	gtk+3 >= 3.4
 Requires:	mktemp
 Requires:	myspell-common
 Requires:	nspr >= 1:4.13.1
