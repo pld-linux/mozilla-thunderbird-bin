@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	52.9.1
+Version:	60.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	9288ef352810c9f458721166b5065339
+# Source0-md5:	63d063cb351cc3e2ab09fb759b51dd42
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	515e28998ea315f4ae69c63a52302f4f
+# Source1-md5:	539493a91fd9844c6f62ad28063f47a4
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -149,8 +149,9 @@ rm -rf $HOME
 %dir %{_libdir}/%{name}/plugins
 
 %attr(755,root,root) %{_libdir}/%{name}/*.so
-%attr(755,root,root) %{_libdir}/%{name}/*.sh
 %attr(755,root,root) %{_libdir}/%{name}/*-bin
+%attr(755,root,root) %{_libdir}/%{name}/minidump-analyzer
+%attr(755,root,root) %{_libdir}/%{name}/pingsender
 %attr(755,root,root) %{_libdir}/%{name}/plugin-container
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
 
@@ -158,7 +159,6 @@ rm -rf $HOME
 %{_libdir}/%{name}/blocklist.xml
 %{_libdir}/%{name}/dependentlibs.list
 %{_libdir}/%{name}/chrome.manifest
-%{_libdir}/%{name}/icudt58l.dat
 %{_libdir}/%{name}/omni.ja
 %{_libdir}/%{name}/platform.ini
 
@@ -196,4 +196,4 @@ rm -rf $HOME
 
 %files addon-lightning
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}
+%{_libdir}/%{name}/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
