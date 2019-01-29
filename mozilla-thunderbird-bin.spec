@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	60.4.0
+Version:	60.5.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	32a71693d315215a8b2cb7031cfac1ff
+# Source0-md5:	7843ab01b789b58da81dec692dee21c4
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	fe00119e20233429a8dd7cb45b7407c9
+# Source1-md5:	32c6d80d89cb5c0ec409a84d4b4a0eea
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -21,7 +21,7 @@ Requires:	gtk+3 >= 3.4
 Requires:	mktemp
 Requires:	myspell-common
 Requires:	nspr >= 1:4.19
-Requires:	nss >= 1:3.36.6
+Requires:	nss >= 1:3.36.7
 Requires:	sqlite3 >= 3.22.0
 Suggests:	%{name}-addon-lightning
 ExclusiveArch:	i686 athlon %{x8664}
@@ -167,6 +167,8 @@ rm -rf $HOME
 
 %dir %{_libdir}/%{name}/extensions
 %{_libdir}/%{name}/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
+%dir %{_libdir}/%{name}/features
+%{_libdir}/%{name}/features/wetransfer@extensions.thunderbird.net.xpi
 
 %dir %{_libdir}/%{name}/distribution
 %dir %{_libdir}/%{name}/distribution/extensions
