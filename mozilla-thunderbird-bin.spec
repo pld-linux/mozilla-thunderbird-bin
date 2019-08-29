@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	60.8.0
+Version:	68.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	0e589e55e6c3b84bc0e7baeb362c090b
+# Source0-md5:	de4f754c62e54ca5118fcb1cdef35657
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	0991911e85dac1673d323da10f7defd2
+# Source1-md5:	ae538f50921e6395da550a2f15f022c2
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -20,9 +20,9 @@ Requires(post,postun):	desktop-file-utils
 Requires:	gtk+3 >= 3.4
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	nspr >= 1:4.19
-Requires:	nss >= 1:3.36.7
-Requires:	sqlite3 >= 3.22.0
+Requires:	nspr >= 1:4.21
+Requires:	nss >= 1:3.44.1
+Requires:	sqlite3 >= 3.28.0
 Suggests:	%{name}-addon-lightning
 ExclusiveArch:	i686 athlon %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -87,9 +87,6 @@ cp -a . $RPM_BUILD_ROOT%{_libdir}/%{name}
 cp -p chrome/icons/default/default48.png $RPM_BUILD_ROOT%{_pixmapsdir}/%{name}.png
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
 
-# use system dict
-%{__rm} -rv $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
-ln -s %{_datadir}/myspell $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
 ln -s %{_datadir}/myspell $RPM_BUILD_ROOT%{_libdir}/%{name}/hyphenation
 
 # move arch independant ones to datadir
@@ -165,8 +162,6 @@ rm -rf $HOME
 %attr(755,root,root) %{_libdir}/%{name}/crashreporter
 %{_libdir}/%{name}/crashreporter.ini
 
-%dir %{_libdir}/%{name}/extensions
-%{_libdir}/%{name}/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
 %dir %{_libdir}/%{name}/features
 %{_libdir}/%{name}/features/wetransfer@extensions.thunderbird.net.xpi
 
@@ -176,13 +171,12 @@ rm -rf $HOME
 # symlinks
 %{_libdir}/%{name}/chrome
 %{_libdir}/%{name}/defaults
-%{_libdir}/%{name}/dictionaries
 %{_libdir}/%{name}/hyphenation
 %{_libdir}/%{name}/icons
 %{_libdir}/%{name}/isp
 
 %dir %{_libdir}/%{name}/fonts
-%{_libdir}/%{name}/fonts/EmojiOneMozilla.ttf
+%{_libdir}/%{name}/fonts/TwemojiMozilla.ttf
 
 %dir %{_libdir}/%{name}/gtk2
 %attr(755,root,root) %{_libdir}/%{name}/gtk2/libmozgtk.so
