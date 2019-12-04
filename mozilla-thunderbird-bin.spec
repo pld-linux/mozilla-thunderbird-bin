@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	68.2.2
+Version:	68.3.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	390eb93edcbb5f8bf8333aff893def5c
+# Source0-md5:	4c4ee6f98cc8792ac5aaf5ad3c71682f
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	88d2d3b6c0638278d72b22731e5d2c3a
+# Source1-md5:	da1cdae269f13eaad2064d3f8a49e107
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -21,7 +21,7 @@ Requires:	gtk+3 >= 3.4
 Requires:	mktemp
 Requires:	myspell-common
 Requires:	nspr >= 1:4.21
-Requires:	nss >= 1:3.44.2
+Requires:	nss >= 1:3.44.3
 Requires:	sqlite3 >= 3.28.0
 Suggests:	%{name}-addon-lightning
 ExclusiveArch:	i686 athlon %{x8664}
