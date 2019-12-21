@@ -5,7 +5,7 @@ Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
 Version:	68.3.0
-Release:	1
+Release:	2
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
@@ -124,17 +124,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %update_desktop_database_post
-# it attempts to register crashreport in $HOME/.thunderbird
-# make temporary $HOME to avoid polluting home of user installing this package
-# via sudo.
-export HOME=$(mktemp -d)
-# also TMPDIR could be pointing to sudo user's homedir
-unset TMPDIR TMP || :
-
-umask 022
-%{_libdir}/%{name}/thunderbird -register
-
-rm -rf $HOME
 
 %postun
 %update_desktop_database_postun
