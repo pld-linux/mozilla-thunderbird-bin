@@ -4,26 +4,29 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	68.10.0
+Version:	78.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	a55d69e335fa0ba35a0bbd18c5dbc224
+# Source0-md5:	3ca85391ff58d7e406373e540c62d5dc
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	94a48daf046752653a4456ef4783ba95
+# Source1-md5:	b623f710a7b714a69494570f71060b33
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
 BuildRequires:	tar >= 1:1.15.1
 Requires(post,postun):	desktop-file-utils
-Requires:	gtk+3 >= 3.4
+Requires:	glib2 >= 1:2.22
+Requires:	glibc >= 6:2.17
+Requires:	gtk+3 >= 3.14
+Requires:	libstdc++ >= 6:4.8.1
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	nspr >= 1:4.21
-Requires:	nss >= 1:3.44.4
-Requires:	sqlite3 >= 3.28.0
-Suggests:	%{name}-addon-lightning
+Requires:	nspr >= 1:4.25
+Requires:	nss >= 1:3.53.1
+Requires:	pango >= 1:1.22.0
+Obsoletes:	mozilla-thunderbird-bin-addon-lightning < 78.0
 ExclusiveArch:	i686 athlon %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -34,7 +37,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		moz_caps		libgtkembedmoz.so liblgpllibs.so libmozgtk.so libmozjs.so libmozsandbox.so libxpcom.so libxul.so libxpcom_core.so libmozsqlite3.so libmozalloc.so libmozwayland.so
 
 %define		mozldap_caps	libldap60.so libldif60.so libprldap60.so libssldap60.so
-%define		sqlite_caps		libsqlite3.so
 # temporarily, see todo
 %define		notify_caps		libnotify.so.1
 
@@ -53,21 +55,6 @@ Binary version from %{url}.
 %description -l pl.UTF-8
 Mozilla Thunderbird jest open sourcowym, szybkim i przenośnym klientem
 poczty. Wersja binarna, ze strony %{url}.
-
-%package addon-lightning
-Summary:	An integrated calendar for Icedove
-Summary(pl.UTF-8):	Zintegrowany kalendarz dla Icedove
-License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
-Group:		Applications/Networking
-Requires:	%{name} = %{version}-%{release}
-
-%description addon-lightning
-Lightning is an calendar extension to Mozilla Thunderbird email
-client.
-
-%description addon-lightning -l pl.UTF-8
-Lightning to rozszerzenie do klienta poczty Mozilla Thunderdbird
-dodające funkcjonalność kalendarza.
 
 %prep
 %setup -qcT
@@ -101,7 +88,7 @@ ln -s ../../share/%{name}/isp $RPM_BUILD_ROOT%{_libdir}/%{name}/isp
 
 # never package these
 # nss
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{freeblpriv3,nss3,nssckbi,nssdbm3,nssutil3,smime3,softokn3,ssl3}.*
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{freeblpriv3,nss3,nssckbi,nssutil3,otr,smime3,softokn3,ssl3}.*
 # nspr
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{nspr4,plc4,plds4}.so
 # mozldap
@@ -142,9 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
 
 %{_libdir}/%{name}/application.ini
-%{_libdir}/%{name}/blocklist.xml
 %{_libdir}/%{name}/dependentlibs.list
-%{_libdir}/%{name}/chrome.manifest
 %{_libdir}/%{name}/omni.ja
 %{_libdir}/%{name}/platform.ini
 
@@ -153,9 +138,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_libdir}/%{name}/features
 %{_libdir}/%{name}/features/wetransfer@extensions.thunderbird.net.xpi
-
-%dir %{_libdir}/%{name}/distribution
-%dir %{_libdir}/%{name}/distribution/extensions
 
 # symlinks
 %{_libdir}/%{name}/chrome
@@ -178,7 +160,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/defaults
 %{_datadir}/%{name}/icons
 %{_datadir}/%{name}/isp
-
-%files addon-lightning
-%defattr(644,root,root,755)
-%{_libdir}/%{name}/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
