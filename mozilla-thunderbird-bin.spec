@@ -4,27 +4,27 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	78.12.0
+Version:	91.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	cf9001ecd57448dfbf27add0abc5d198
+# Source0-md5:	098c0f17054c302537a157dbf08035aa
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	e68c51aa761a3c67b7bf1e5b667e107e
+# Source1-md5:	b6daff5a0b33f9c9a409858ff0a5b3f5
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
 BuildRequires:	tar >= 1:1.15.1
 Requires(post,postun):	desktop-file-utils
-Requires:	glib2 >= 1:2.22
+Requires:	glib2 >= 1:2.42
 Requires:	glibc >= 6:2.17
 Requires:	gtk+3 >= 3.14
 Requires:	libstdc++ >= 6:4.8.1
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	nspr >= 1:4.25.1
-Requires:	nss >= 1:3.53.1
+Requires:	nspr >= 1:4.32
+Requires:	nss >= 1:3.68
 Requires:	pango >= 1:1.22.0
 Obsoletes:	mozilla-thunderbird-bin-addon-lightning < 78.0
 ExclusiveArch:	i686 athlon %{x8664}
@@ -136,9 +136,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/crashreporter
 %{_libdir}/%{name}/crashreporter.ini
 
-%dir %{_libdir}/%{name}/features
-%{_libdir}/%{name}/features/wetransfer@extensions.thunderbird.net.xpi
-
 # symlinks
 %{_libdir}/%{name}/chrome
 %{_libdir}/%{name}/defaults
@@ -148,9 +145,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_libdir}/%{name}/fonts
 %{_libdir}/%{name}/fonts/TwemojiMozilla.ttf
-
-%dir %{_libdir}/%{name}/gtk2
-%attr(755,root,root) %{_libdir}/%{name}/gtk2/libmozgtk.so
 
 %{_pixmapsdir}/*.png
 %{_desktopdir}/*.desktop
