@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	91.10.0
+Version:	102.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	a307505b82467007159684f38b621ba9
+# Source0-md5:	ca3f189599c4b55dea98567ad5ec13e2
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	cb6cb78ad96f613f3588984aa0baa061
+# Source1-md5:	cc676daa53a88a4b2e82be7323d2d797
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -23,8 +23,8 @@ Requires:	gtk+3 >= 3.14
 Requires:	libstdc++ >= 6:4.8.1
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	nspr >= 1:4.32
-Requires:	nss >= 1:3.68.4
+Requires:	nspr >= 1:4.34
+Requires:	nss >= 1:3.79
 Requires:	pango >= 1:1.22.0
 Obsoletes:	mozilla-thunderbird-bin-addon-lightning < 78.0
 ExclusiveArch:	i686 athlon %{x8664}
@@ -34,9 +34,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_enable_debug_packages	0
 
 %define		nspr_caps		libnspr4.so libplc4.so libplds4.so
-%define		moz_caps		libgtkembedmoz.so liblgpllibs.so libmozgtk.so libmozjs.so libmozsandbox.so libxpcom.so libxul.so libxpcom_core.so libmozsqlite3.so libmozalloc.so libmozwayland.so
+%define		moz_caps		libgtkembedmoz.so liblgpllibs.so libmozgtk.so libmozjs.so libmozsandbox.so librnp.so libxpcom.so libxul.so libxpcom_core.so libmozsqlite3.so libmozalloc.so libmozwayland.so
 
-%define		mozldap_caps	libldap60.so libldif60.so libprldap60.so libssldap60.so
 # temporarily, see todo
 %define		notify_caps		libnotify.so.1
 
@@ -91,9 +90,7 @@ ln -s ../../share/%{name}/isp $RPM_BUILD_ROOT%{_libdir}/%{name}/isp
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{freeblpriv3,nss3,nssckbi,nssutil3,otr,smime3,softokn3,ssl3}.*
 # nspr
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{nspr4,plc4,plds4}.so
-# mozldap
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{ldap,ldif,prldap}60.so
-grep -v 'lib\(nspr4\|plc4\|plds4\|nssutil3\|nss3\|smime3\|ssl3\|ldap60\|ldif60\|prldap60\).so' \
+grep -v 'lib\(nspr4\|plc4\|plds4\|nssutil3\|nss3\|smime3\|ssl3\).so' \
 	dependentlibs.list > $RPM_BUILD_ROOT%{_libdir}/%{name}/dependentlibs.list
 
 # remove update notifier, we prefer rpm packages for updating
@@ -126,6 +123,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/minidump-analyzer
 %attr(755,root,root) %{_libdir}/%{name}/pingsender
 %attr(755,root,root) %{_libdir}/%{name}/plugin-container
+%attr(755,root,root) %{_libdir}/%{name}/rnp-cli
+%attr(755,root,root) %{_libdir}/%{name}/rnpkeys
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
 
 %{_libdir}/%{name}/application.ini
