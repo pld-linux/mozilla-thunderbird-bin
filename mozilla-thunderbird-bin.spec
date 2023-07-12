@@ -5,7 +5,7 @@ Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
 Version:	115.0
-Release:	1
+Release:	2
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
@@ -34,7 +34,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_enable_debug_packages	0
 
 %define		nspr_caps		libnspr4.so libplc4.so libplds4.so
-%define		moz_caps		libgtkembedmoz.so liblgpllibs.so libmozgtk.so libmozjs.so libmozsandbox.so librnp.so libxpcom.so libxul.so libxpcom_core.so libmozsqlite3.so libmozalloc.so libmozwayland.so
+%define		moz_caps		libgtkembedmoz.so liblgpllibs.so libmozgtk.so libmozjs.so libmozsandbox.so librnp.so libxpcom.so libxul.so libxpcom_core.so libmozsqlite3.so libmozalloc.so libmozavcodec.so libmozavutil.so libmozwayland.so
 
 # temporarily, see todo
 %define		notify_caps		libnotify.so.1
