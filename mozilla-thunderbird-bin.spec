@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	102.13.0
+Version:	115.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	33330be3616bcc368866fc731881ad53
+# Source0-md5:	2d863d9d742d3a059c108e6cbbdc775b
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	b12921e2a6e9c529628cd66434e4e151
+# Source1-md5:	9927a05b3d5b0ce5a98c8361dc00ed4c
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -23,8 +23,8 @@ Requires:	gtk+3 >= 3.14
 Requires:	libstdc++ >= 6:4.8.1
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	nspr >= 1:4.34.1
-Requires:	nss >= 1:3.79.4
+Requires:	nspr >= 1:4.35
+Requires:	nss >= 1:3.90
 Requires:	pango >= 1:1.22.0
 Obsoletes:	mozilla-thunderbird-bin-addon-lightning < 78.0
 ExclusiveArch:	i686 athlon %{x8664}
@@ -119,13 +119,15 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}/plugins
 
 %attr(755,root,root) %{_libdir}/%{name}/*.so
-%attr(755,root,root) %{_libdir}/%{name}/*-bin
+%attr(755,root,root) %{_libdir}/%{name}/glxtest
 %attr(755,root,root) %{_libdir}/%{name}/minidump-analyzer
 %attr(755,root,root) %{_libdir}/%{name}/pingsender
 %attr(755,root,root) %{_libdir}/%{name}/plugin-container
 %attr(755,root,root) %{_libdir}/%{name}/rnp-cli
 %attr(755,root,root) %{_libdir}/%{name}/rnpkeys
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
+%attr(755,root,root) %{_libdir}/%{name}/thunderbird-bin
+%attr(755,root,root) %{_libdir}/%{name}/vaapitest
 
 %{_libdir}/%{name}/application.ini
 %{_libdir}/%{name}/dependentlibs.list
