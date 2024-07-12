@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	115.12.1
+Version:	128.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
-Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	77d6a7bc5ef1727a4eeee7256be286c6
-Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	9874b9fe200444c74df0d9aa5d640c89
+Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}esr/linux-i686/en-US/thunderbird-%{version}esr.tar.bz2?/%{realname}-%{version}.tar.bz2
+# Source0-md5:	bebd08d773bc8f7784a8138275bb9e5a
+Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}esr/linux-x86_64/en-US/thunderbird-%{version}esr.tar.bz2?/%{realname}64-%{version}.tar.bz2
+# Source1-md5:	acb4e482690cb3d09232eece90b57114
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -34,7 +34,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_enable_debug_packages	0
 
 %define		nspr_caps		libnspr4.so libplc4.so libplds4.so
-%define		moz_caps		libgtkembedmoz.so liblgpllibs.so libmozgtk.so libmozjs.so libmozsandbox.so librnp.so libxpcom.so libxul.so libxpcom_core.so libmozsqlite3.so libmozalloc.so libmozavcodec.so libmozavutil.so libmozwayland.so
+%define		moz_caps		libgkcodecs.so libgtkembedmoz.so liblgpllibs.so libmozgtk.so libmozjs.so libmozsandbox.so librnp.so libxpcom.so libxul.so libxpcom_core.so libmozsqlite3.so libmozalloc.so libmozavcodec.so libmozavutil.so libmozwayland.so
 
 # temporarily, see todo
 %define		notify_caps		libnotify.so.1
@@ -97,7 +97,6 @@ grep -v 'lib\(nspr4\|plc4\|plds4\|nssutil3\|nss3\|smime3\|ssl3\).so' \
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/update-settings.ini
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/updater
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/updater.ini
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/Throbber-small.gif
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/precomplete
 
 # remove unecessary stuff
@@ -122,7 +121,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/glxtest
 %attr(755,root,root) %{_libdir}/%{name}/minidump-analyzer
 %attr(755,root,root) %{_libdir}/%{name}/pingsender
-%attr(755,root,root) %{_libdir}/%{name}/plugin-container
 %attr(755,root,root) %{_libdir}/%{name}/rnp-cli
 %attr(755,root,root) %{_libdir}/%{name}/rnpkeys
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
@@ -135,7 +133,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/platform.ini
 
 %attr(755,root,root) %{_libdir}/%{name}/crashreporter
-%{_libdir}/%{name}/crashreporter.ini
 
 # symlinks
 %{_libdir}/%{name}/chrome
