@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	128.7.0
+Version:	128.7.1
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}esr/linux-i686/en-US/thunderbird-%{version}esr.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	926737369a03990364e7d57578e35469
+# Source0-md5:	c3fe91eead5ee1f2fd9b9d8525759455
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}esr/linux-x86_64/en-US/thunderbird-%{version}esr.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	491880a44a346fab8956bd46c721d599
+# Source1-md5:	4d5f8101ca91514d67b85de00980a15c
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
