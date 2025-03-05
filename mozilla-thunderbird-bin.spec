@@ -4,18 +4,19 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	128.7.1
+Version:	136.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
-Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}esr/linux-i686/en-US/thunderbird-%{version}esr.tar.bz2?/%{realname}-%{version}.tar.bz2
-# Source0-md5:	c3fe91eead5ee1f2fd9b9d8525759455
-Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}esr/linux-x86_64/en-US/thunderbird-%{version}esr.tar.bz2?/%{realname}64-%{version}.tar.bz2
-# Source1-md5:	4d5f8101ca91514d67b85de00980a15c
+Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.xz?/%{realname}-%{version}.tar.xz
+# Source0-md5:	0bea75dcb0c92414873822fbf29312bc
+Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.xz?/%{realname}64-%{version}.tar.xz
+# Source1-md5:	9c69cdfe114cd4f04e3a2becbbb2167f
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
-BuildRequires:	tar >= 1:1.15.1
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
 Requires:	glib2 >= 1:2.42
 Requires:	glibc >= 6:2.17
@@ -23,8 +24,8 @@ Requires:	gtk+3 >= 3.14
 Requires:	libstdc++ >= 6:4.8.1
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	nspr >= 1:4.35
-Requires:	nss >= 1:3.101.1
+Requires:	nspr >= 1:4.36
+Requires:	nss >= 1:3.108
 Requires:	pango >= 1:1.22.0
 Obsoletes:	mozilla-thunderbird-bin-addon-lightning < 78.0
 ExclusiveArch:	i686 athlon %{x8664}
@@ -58,10 +59,10 @@ poczty. Wersja binarna, ze strony %{url}.
 %prep
 %setup -qcT
 %ifarch %{ix86}
-%{__tar} jxf %{SOURCE0} --strip-components=1
+%{__tar} xf %{SOURCE0} --strip-components=1
 %endif
 %ifarch %{x8664}
-%{__tar} jxf %{SOURCE1} --strip-components=1
+%{__tar} xf %{SOURCE1} --strip-components=1
 %endif
 
 %install
@@ -119,7 +120,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_libdir}/%{name}/*.so
 %attr(755,root,root) %{_libdir}/%{name}/glxtest
-%attr(755,root,root) %{_libdir}/%{name}/minidump-analyzer
 %attr(755,root,root) %{_libdir}/%{name}/pingsender
 %attr(755,root,root) %{_libdir}/%{name}/rnp-cli
 %attr(755,root,root) %{_libdir}/%{name}/rnpkeys
