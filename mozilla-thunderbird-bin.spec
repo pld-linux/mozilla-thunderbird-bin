@@ -4,14 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	136.0
+Version:	137.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.xz?/%{realname}-%{version}.tar.xz
-# Source0-md5:	0bea75dcb0c92414873822fbf29312bc
+# Source0-md5:	fda5e0ee90a584fc29d588ff7665e0b7
 Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.xz?/%{realname}64-%{version}.tar.xz
-# Source1-md5:	9c69cdfe114cd4f04e3a2becbbb2167f
+# Source1-md5:	115928264e20a75e8bbabdec641a87dd
 Source2:	%{name}.desktop
 Source3:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -25,7 +25,7 @@ Requires:	libstdc++ >= 6:4.8.1
 Requires:	mktemp
 Requires:	myspell-common
 Requires:	nspr >= 1:4.36
-Requires:	nss >= 1:3.108
+Requires:	nss >= 1:3.109
 Requires:	pango >= 1:1.22.0
 Obsoletes:	mozilla-thunderbird-bin-addon-lightning < 78.0
 ExclusiveArch:	i686 athlon %{x8664}
@@ -88,7 +88,7 @@ ln -s ../../share/%{name}/isp $RPM_BUILD_ROOT%{_libdir}/%{name}/isp
 
 # never package these
 # nss
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{freeblpriv3,nss3,nssckbi,nssutil3,otr,smime3,softokn3,ssl3}.*
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{freeblpriv3,nss3,nssutil3,otr,smime3,softokn3,ssl3}.*
 # nspr
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{nspr4,plc4,plds4}.so
 grep -v 'lib\(nspr4\|plc4\|plds4\|nssutil3\|nss3\|smime3\|ssl3\).so' \
