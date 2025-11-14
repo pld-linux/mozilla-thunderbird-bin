@@ -4,16 +4,14 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	144.0.1
+Version:	145.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
-Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/en-US/thunderbird-%{version}.tar.xz?/%{realname}-%{version}.tar.xz
-# Source0-md5:	8c4259025ed9415749c702c835b11a41
-Source1:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.xz?/%{realname}64-%{version}.tar.xz
-# Source1-md5:	d059daaf6484480b81ab0ce8a7f65c3c
-Source2:	%{name}.desktop
-Source3:	%{name}.sh
+Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.xz?/%{realname}64-%{version}.tar.xz
+# Source0-md5:	69355e12a6d2217b9ad7b354cbf44930
+Source1:	%{name}.desktop
+Source2:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -24,11 +22,11 @@ Requires:	gtk+3 >= 3.14
 Requires:	libstdc++ >= 6:4.8.1
 Requires:	mktemp
 Requires:	myspell-common
-Requires:	nspr >= 1:4.36
-Requires:	nss >= 1:3.116
+Requires:	nspr >= 1:4.37
+Requires:	nss >= 1:3.117
 Requires:	pango >= 1:1.22.0
 Obsoletes:	mozilla-thunderbird-bin-addon-lightning < 78.0
-ExclusiveArch:	i686 athlon %{x8664}
+ExclusiveArch:	%{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # already stripped
@@ -58,21 +56,18 @@ poczty. Wersja binarna, ze strony %{url}.
 
 %prep
 %setup -qcT
-%ifarch %{ix86}
-%{__tar} xf %{SOURCE0} --strip-components=1
-%endif
 %ifarch %{x8664}
-%{__tar} xf %{SOURCE1} --strip-components=1
+%{__tar} xf %{SOURCE0} --strip-components=1
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/%{name}/plugins,%{_datadir}/%{name},%{_pixmapsdir},%{_desktopdir}}
 
-sed 's,@libdir@,%{_libdir}/%{name},' %{SOURCE3} > $RPM_BUILD_ROOT%{_bindir}/%{name}
+sed 's,@libdir@,%{_libdir}/%{name},' %{SOURCE2} > $RPM_BUILD_ROOT%{_bindir}/%{name}
 cp -a . $RPM_BUILD_ROOT%{_libdir}/%{name}
 cp -p chrome/icons/default/default48.png $RPM_BUILD_ROOT%{_pixmapsdir}/%{name}.png
-cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
 
 ln -s %{_datadir}/myspell $RPM_BUILD_ROOT%{_libdir}/%{name}/hyphenation
 
