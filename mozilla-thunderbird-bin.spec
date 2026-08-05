@@ -86,7 +86,7 @@ ln -s ../../share/%{name}/isp $RPM_BUILD_ROOT%{_libdir}/%{name}/isp
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{freeblpriv3,nss3,nssutil3,otr,smime3,softokn3,ssl3}.*
 # nspr
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib{nspr4,plc4,plds4}.so
-grep -v 'lib\(nspr4\|plc4\|plds4\|nssutil3\|nss3\|smime3\|ssl3\).so' \
+grep -v 'lib\(freeblpriv3\|nspr4\|plc4\|plds4\|nssutil3\|nss3\|smime3\|ssl3\).so' \
 	dependentlibs.list > $RPM_BUILD_ROOT%{_libdir}/%{name}/dependentlibs.list
 
 # remove update notifier, we prefer rpm packages for updating
