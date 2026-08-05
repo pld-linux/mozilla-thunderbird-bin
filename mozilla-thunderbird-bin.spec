@@ -128,6 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/omni.ja
 %{_libdir}/%{name}/platform.ini
 
+%attr(755,root,root) %{_libdir}/%{name}/crashhelper
 %attr(755,root,root) %{_libdir}/%{name}/crashreporter
 
 # symlinks
