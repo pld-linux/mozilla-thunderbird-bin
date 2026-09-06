@@ -4,12 +4,12 @@
 Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
-Version:	154.0
+Version:	155.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.xz?/%{realname}64-%{version}.tar.xz
-# Source0-md5:	ab8377809b0515403cf1bfb7e165b8b5
+# Source0-md5:	bd9e3e6d858ed3137a8cc2ad1f907780
 Source1:	%{name}.desktop
 Source2:	%{name}.sh
 URL:		http://www.mozilla.org/projects/thunderbird/
@@ -23,7 +23,7 @@ Requires:	libstdc++ >= 6:4.8.1
 Requires:	mktemp
 Requires:	myspell-common
 Requires:	nspr >= 1:4.39
-Requires:	nss >= 1:3.126
+Requires:	nss >= 1:3.127
 Requires:	pango >= 1:1.22.0
 Obsoletes:	mozilla-thunderbird-bin-addon-lightning < 78.0
 ExclusiveArch:	%{x8664}
@@ -114,13 +114,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}/plugins
 
 %attr(755,root,root) %{_libdir}/%{name}/*.so
-%attr(755,root,root) %{_libdir}/%{name}/glxtest
+%attr(755,root,root) %{_libdir}/%{name}/gfxtest
 %attr(755,root,root) %{_libdir}/%{name}/pingsender
 %attr(755,root,root) %{_libdir}/%{name}/rnp-cli
 %attr(755,root,root) %{_libdir}/%{name}/rnpkeys
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird-bin
-%attr(755,root,root) %{_libdir}/%{name}/vaapitest
 
 %{_libdir}/%{name}/application.ini
 %{_libdir}/%{name}/dependentlibs.list
