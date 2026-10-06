@@ -5,7 +5,7 @@ Summary:	Mozilla Thunderbird - email client
 Summary(pl.UTF-8):	Mozilla Thunderbird - klient poczty
 Name:		mozilla-thunderbird-bin
 Version:	157.0
-Release:	1
+Release:	2
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications/Networking
 Source0:	https://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-x86_64/en-US/thunderbird-%{version}.tar.xz?/%{realname}64-%{version}.tar.xz
@@ -116,8 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/*.so
 %attr(755,root,root) %{_libdir}/%{name}/gfxtest
 %attr(755,root,root) %{_libdir}/%{name}/pingsender
-%attr(755,root,root) %{_libdir}/%{name}/rnp-cli
-%attr(755,root,root) %{_libdir}/%{name}/rnpkeys
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird
 %attr(755,root,root) %{_libdir}/%{name}/thunderbird-bin
 
